@@ -83,12 +83,12 @@ void cons() {
 			if (myquee.size > 0){
 
 				myquee.pop();		
-				cout << "Consumed " << x << endl;
+				
 			}
 		}
 
 		semFree.up();
-
+		cout << "Consumed "<< endl;
 	}
 
 }
