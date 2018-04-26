@@ -43,23 +43,23 @@ inline void down(){
 
 
 
-void prod() {
+void Producator() {
 
-	int produced = NULL;
+	int produs = NULL;
 
 	while (true) {
 
-		if (produced == NULL)
-			produced++;
+		if (produs == NULL)
+			produs++;
 
 		semFree.down();
 		std::lock_guard<std::mutex> guard(queueMutex);{
 
 			if (myquee.size() < 10) {
 
-				myquee.push(produced);
-				cout << "produced "<< endl;
-				produced = NULL;
+				myquee.push(produs);
+				cout << "Produced "<< endl;
+				produs = NULL;
 
 			} 
 		}
@@ -70,7 +70,7 @@ void prod() {
 
 
 
-void cons() {
+void Consumator() {
 
 	while (true) {
 
