@@ -58,7 +58,7 @@ void prod() {
 			if (myquee.size() < 10) {
 
 				myquee.push(produced);
-				cout << "Consumed " << x << endl;
+				cout << "produced "<< endl;
 				produced = NULL;
 
 			} 
