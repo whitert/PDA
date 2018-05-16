@@ -25,22 +25,22 @@ int main()
 {
 	double INFINIT = 9999;
 	int n = 5;
-	size_t size = n * n * sizeof(float);
+	size_t size = n * n * sizeof(float); // aloc vect de intrare in mem
  
 	
 	int h_a[n][n] = { { 0, 2, INFINIT, 2, INFINIT },
 			  { 2, 0, 3, INFINIT, INFINIT },
 			  { INFINIT, 3, 0, 1, 8 },
 			  { 10, INFINIT, 1, 0, INFINIT },
-			  { INFINIT, INFINIT, 8, INFINIT, 0 } };
+			  { INFINIT, INFINIT, 8, INFINIT, 0 } }; // init vect
 					
-	int* d_a;
-
+	int* d_a; // aloc vect in memorie
 	cudaMalloc(&d_a, size);
-	cudaMemcpy(d_a, h_a, size, cudaMemcpyHostToDevice);
+	
+	cudaMemcpy(d_a, h_a, size, cudaMemcpyHostToDevice); // copy din mem in memorie dev
 	
 	int numBlocks = 1;
-  dim3 threadsPerBlock(n);
+  	dim3 threadsPerBlock(n);
 
 	for(int k = 0; k < n; k++){
 	  RoyFloyd<<<numBlocks, threadsPerBlock>>>(d_a, k);
