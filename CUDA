@@ -14,10 +14,10 @@ __device__ int min(int a, int b) {
 __global__ void RoyFloyd(int a[n][n],int k) {
 
 	int i = threadIdx.x;
+	int j = threadIdx.y;
 	
-	for (int j = 0; j < n; j++) {
-		a[i][j] = min(a[i][j], a[i][k] + a[k][j]);
-	}
+	a[i][j] = min(a[i][j], a[i][k] + a[k][j]);
+	
 	
 }
 
@@ -34,7 +34,7 @@ int main()
 			  { 10, INFINIT, 1, 0, INFINIT },
 			  { INFINIT, INFINIT, 8, INFINIT, 0 } }; // init vect
 					
-	int* d_a; // aloc vect in memorie
+	int* d_a; // aloc vect in memorie int
 	cudaMalloc(&d_a, size);
 	
 	cudaMemcpy(d_a, h_a, size, cudaMemcpyHostToDevice); // copy din mem in memorie dev
